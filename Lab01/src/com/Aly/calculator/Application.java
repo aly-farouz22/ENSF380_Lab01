@@ -20,7 +20,7 @@ public class Application {
 	    Scanner scanner = new Scanner(System.in);
 	    
 	    while (true) {
-	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
+	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial, permute) or 'exit' to quit:");
 	        String operation = scanner.next();
 	        
 	        if (operation.equalsIgnoreCase("exit")) {
@@ -51,6 +51,9 @@ public class Application {
 	                case "pow":
 	                    System.out.println("Result: " + power(num1, num2));
 	                    break;
+	                case "permute":
+	                	System.out.println("Result: " + permute(num1, num2));
+	                	break;
 	                default:
 	                    System.out.println("Invalid operation.");
 	                    break;
@@ -180,7 +183,7 @@ public class Application {
 	}
 	// Takes 1 double as an argument, calculates factorial an returns the result.
 
-	public static long factorial(int num) {
+	public static double factorial(double num) {
 	    if (num < 0) {
 	        System.out.println("Factorial of negative number is undefined.");
 	        return 0;
@@ -188,7 +191,7 @@ public class Application {
 	    return factorialHelper(num, num);
 	}
 
-	private static long factorialHelper(int originalNum, int num) {
+	private static double factorialHelper(double originalNum, double num) {
 	    if (num <= 1) {
 	        return 1;
 	    }
@@ -247,7 +250,26 @@ public class Application {
 		double angleRadians = Math.toRadians(angleDegrees);
 		return Math.tan(angleRadians);
 	}
+	public static double permute(double arrayLength, double itemSelect) {
+		if (itemSelect < 0 || itemSelect > 100 || arrayLength > 100 || arrayLength < itemSelect) {
+			throw new IllegalArgumentException("Illegal argument!");
+		}
+		double numerator = factorial(arrayLength);
+		double denomentaor = factorial(arrayLength - itemSelect);
+		return (numerator / denomentaor);
+			
+	}
+	
+	public static int calculateFactorial(int num) {
+		int product = 1;
+		for(int i = 1; i <= num; i++) {
+		product *= i;
+		}
+		return product;
+	}
+	
 
 
 
 }
+
